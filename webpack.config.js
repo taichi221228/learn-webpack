@@ -14,7 +14,9 @@ const entryPoint = glob.sync('./**/main.{js,ts}')[0];
 
 const stylesHandler = MiniCssExtractPlugin.loader;
 
-const pageList = glob.sync('./**/*.{html,pug}', { ignore: './components/**' });
+const pageList = glob.sync('./**/*.{html,ejs,pug}', {
+  ignore: './{,_}{component,include,layout}{,s}/**',
+});
 
 const config = {
   entry: entryPoint,
@@ -67,7 +69,24 @@ const config = {
   },
   resolve: {
     alias: { '@': `${__dirname}/src` },
-    extensions: ['.ts', '.js'],
+    extensions: [
+      '.ts',
+      '.js',
+      '.css',
+      '.pcss',
+      '.sass',
+      '.html',
+      '.pug',
+      '.ejs',
+      '.eot',
+      '.svg',
+      '.ttf',
+      '.woff',
+      '.woff2',
+      '.png',
+      '.jpg',
+      '.gif',
+    ],
   },
   optimization: {
     splitChunks: {

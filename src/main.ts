@@ -1,15 +1,11 @@
-import $ from 'jquery';
-
 import 'sanitize.css';
-import 'sanitize.css/forms.css';
-import 'sanitize.css/assets.css';
-import 'sanitize.css/system-ui.css';
-import 'sanitize.css/typography.css';
-import 'sanitize.css/reduce-motion.css';
-import 'sanitize.css/ui-monospace.css';
+import 'sanitize.css/forms';
+import 'sanitize.css/assets';
+import 'sanitize.css/system-ui';
+import 'sanitize.css/typography';
+import 'sanitize.css/reduce-motion';
+import 'sanitize.css/ui-monospace';
 
-import '@/main.pcss';
+import '@/style';
 
-$('h1').each(function () {
-  $(this).append('!');
-});
+import '@/scripts/hello';
