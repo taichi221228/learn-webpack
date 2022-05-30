@@ -60,6 +60,6 @@
     "lint-staged": {
         "*.{js,ts,html,ejs,pug,css,pcss,sass,json}": "prettier --write --ignore-path \"./.gitignore\"",
         "*.{js,ts}": "eslint --cache --ignore-path \"./.gitignore\"",
-        "*.{css,pcss,sass}": "stylelint --cache --ignore-path \"./.gitignore\""
+        "*.{css,pcss,sass}": "stylelint --cache --fix --ignore-path \"./.gitignore\""
     }
 }
