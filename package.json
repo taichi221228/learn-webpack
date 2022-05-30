@@ -4,7 +4,6 @@
     "name": "my-webpack-project",
     "scripts": {
         "build": "rm -rf dist/* ; webpack --mode=production --node-env=production",
-        "watch": "webpack --watch",
         "serve": "webpack serve",
         "format": "concurrently -c \"#BC507A\",\"#7963E6\",\"#7A8387\" -n prettier,eslint,stylelint \"prettier --ignore-path \\\"./.gitignore\\\" --write \\\"**/*.{js,ts,html,pug,css,pcss,sass,json}\\\"\" \"eslint --ignore-path \\\"./.gitignore\\\" --fix \\\"**/*.{js,ts}\\\"\" \"stylelint --ignore-path \\\"./.gitignore\\\" --fix \\\"**/*.{css,pcss,sass}\\\"\"",
         "lint": "concurrently -c \"#7963E6\",\"#7A8387\" -n eslint,stylelint \"eslint --ignore-path \\\"./.gitignore\\\" \\\"**/*.{js,ts}\\\"\" \"stylelint --ignore-path \\\"./.gitignore\\\" \\\"**/*.{css,pcss,sass}\\\"\""

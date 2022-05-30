@@ -8,7 +8,7 @@ const TerserWebpackPlugin = require('terser-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-const entryPoint = glob.sync('main.{js,ts}')[0];
+const entryPoint = glob.sync('./main.{js,ts}')[0];
 
 const stylesHandler = MiniCssExtractPlugin.loader;
 
