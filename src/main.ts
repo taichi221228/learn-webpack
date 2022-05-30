@@ -10,6 +10,6 @@ import 'sanitize.css/ui-monospace.css';
 
 import '@/main.pcss';
 
-$('h1').each(() => {
+$('h1').each(function () {
   $(this).append('!');
 });
