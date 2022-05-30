@@ -26,8 +26,14 @@ const config = {
     assetModuleFilename: 'assets/[path][name][ext]',
   },
   devServer: {
-    open: true,
-    host: 'localhost',
+    open: {
+      app: { name: 'google chrome' },
+    },
+    host: 'local-ipv4',
+    watchFiles: {
+      paths: [`./**/*.{html,pug}`],
+      options: { liveReload: true },
+    },
   },
   plugins: [
     new MiniCssExtractPlugin(),
