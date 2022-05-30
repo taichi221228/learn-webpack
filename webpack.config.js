@@ -2,11 +2,12 @@ process.chdir('./src');
 
 const path = require('path');
 const glob = require('glob');
-const ESLintWebpackPlugin = require('eslint-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
+const HtmlPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
-const TerserWebpackPlugin = require('terser-webpack-plugin');
+const StylelintPlugin = require('stylelint-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const { ProvidePlugin } = require('webpack');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -14,7 +15,7 @@ const entryPoint = glob.sync('./**/main.{js,ts}')[0];
 
 const stylesHandler = MiniCssExtractPlugin.loader;
 
-const pageList = glob.sync('./**/*.{html,ejs,pug}', {
+const pageList = glob.sync('./**/*.{html,pug}', {
   ignore: './{,_}{component,include,layout}{,s}/**',
 });
 
@@ -30,11 +31,15 @@ const config = {
   },
   plugins: [
     new MiniCssExtractPlugin(),
-    new ESLintWebpackPlugin({
+    new ESLintPlugin({
       extensions: ['js', 'ts'],
     }),
-    new StylelintWebpackPlugin({
+    new StylelintPlugin({
       extensions: ['css', 'pcss', 'scss'],
+    }),
+    new ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
     }),
   ],
   module: {
@@ -77,7 +82,6 @@ const config = {
       '.sass',
       '.html',
       '.pug',
-      '.ejs',
       '.eot',
       '.svg',
       '.ttf',
@@ -100,7 +104,7 @@ const config = {
     },
     minimize: true,
     minimizer: [
-      new TerserWebpackPlugin({
+      new TerserPlugin({
         terserOptions: {
           compress: { drop_console: true },
         },
@@ -113,7 +117,7 @@ function addPageHandler(filename) {
   const basename = path.parse(filename).name;
   const outputDirname = path.dirname(filename.replace('pages/', ''));
   const outputFilename = path.join(outputDirname, `${basename}.html`);
-  const handler = new HtmlWebpackPlugin({
+  const handler = new HtmlPlugin({
     filename: outputFilename,
     template: filename,
     minify: false,
