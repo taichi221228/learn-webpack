@@ -5,6 +5,9 @@ module.exports = {
     node: true,
   },
   extends: ['eslint:recommended', 'prettier'],
+  parserOptions: {
+    sourceType: 'module',
+  },
   overrides: [
     {
       files: '**/*.ts',
