@@ -1,6 +1,5 @@
 mixin card(name)
-  - hName = name.charAt(0).toUpperCase() + name.slice(1);
-
-  div(class=`card ${name}`)
-    h1 Hello #{ hName }!
-    img(src=require(`@/images/${name}.svg`))
+  div(class=`card ${name.toLowerCase()}`)
+    h1 Hello #{ name }!
+    .img-wrapper
+      img(src=require(`@/images/${name.toLowerCase()}.svg`))

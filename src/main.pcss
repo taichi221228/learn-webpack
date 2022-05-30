@@ -1,8 +1,8 @@
+@custom-media --medium (width <= 768px);
+
 :root {
-  --color: #9fd4f7;
-  --dark-color: #3a76ba;
-  --black-color: #202124;
-  --white-color: #fff;
+  --color: #bdcef0;
+  --dark-color: #6e8bc4;
   --font-family: "avenir next", sans-serif;
 }
 
@@ -11,40 +11,61 @@
   margin: 0;
 }
 
+html {
+  font-size: 1px;
+  @media (--medium) {
+    font-size: calc(100vw / 768);
+  }
+}
+
 .card {
+  --text-color: var(--color);
   --background-color: var(--dark-color);
+  --shadow-color: var(--color);
+  --height: 100vh;
+  --padding: 90rem;
+  --blank: 400rem;
 
   position: sticky;
-  z-index: var(--z-index);
   top: 0;
   display: flex;
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(var(--height) + var(--blank));
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 90px;
+  padding-top: var(--padding);
+  padding-bottom: calc(var(--padding) + var(--blank));
   margin-top: var(--top);
   background-color: var(--background-color);
+  gap: 100rem;
   text-align: center;
+  @media (--medium) {
+    --blank: 800rem;
+
+    justify-content: center;
+    gap: 200rem;
+  }
 
   & h1 {
-    color: var(--color);
+    color: var(--text-color);
     font-family: var(--font-family);
-    font-size: 5rem;
-    text-shadow: 0 0 10px var(--color);
+    font-size: 80rem;
+    text-shadow: 0 0 10rem var(--shadow-color);
+    @media (--medium) {
+      font-size: 120rem;
+    }
   }
 
-  & img {
-    width: 300px;
+  & .img-wrapper {
+    width: 250rem;
     animation: rotate linear 3s infinite;
-    filter: drop-shadow(0 0 5px var(--color));
-  }
+    filter: drop-shadow(0 0 10rem var(--shadow-color));
 
-  @for $i from 1 to 5 {
-    &:nth-child($i) {
-      --top: calc($i00vh - 100vh);
-      --z-index: $i;
+    & img {
+      @media (--medium) {
+        transform: scale(1.4);
+      }
     }
   }
 
@@ -52,27 +73,32 @@
     --color: #e9cda8;
     --dark-color: #51352d;
 
-    & img {
-      width: 320px;
+    & .img-wrapper {
+      width: 320rem;
     }
   }
 
   &.postcss {
     --color: #cc463e;
-    --dark-color: #5d0602;
+    --dark-color: #4f0b08;
 
-    & img {
-      width: 270px;
+    & .img-wrapper {
+      width: 270rem;
     }
   }
 
   &.typescript {
     --color: #fff;
-    --dark-color: #3478c6;
+    --dark-color: #1a3e69;
 
-    & img {
-      width: 240px;
+    & .img-wrapper {
+      width: 230rem;
     }
+  }
+
+  &:last-child {
+    min-height: var(--height);
+    padding-bottom: var(--padding);
   }
 }
 

@@ -14,7 +14,7 @@ html
       type="image/svg+xml"
     )
   body
-    - const cardNameList = ["webpack", "pug", "postcss", "typescript"];
+    - const cardNameList = ["Webpack", "Pug", "PostCSS", "TypeScript"];
     include ~@/components/hello
     each cardName in cardNameList
-      +card(cardName, index)
+      +card(cardName)
