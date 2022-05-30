@@ -6,7 +6,8 @@
         "build": "rm -rf dist/* ; webpack --mode=production --node-env=production",
         "serve": "webpack serve",
         "format": "concurrently -c \"#BC507A\",\"#7963E6\",\"#7A8387\" -n prettier,eslint,stylelint \"prettier --ignore-path \\\"./.gitignore\\\" --write \\\"**/*.{js,ts,html,ejs,pug,css,pcss,sass,json}\\\"\" \"eslint --ignore-path \\\"./.gitignore\\\" --fix \\\"**/*.{js,ts}\\\"\" \"stylelint --ignore-path \\\"./.gitignore\\\" --fix \\\"**/*.{css,pcss,sass}\\\"\"",
-        "lint": "concurrently -c \"#7963E6\",\"#7A8387\" -n eslint,stylelint \"eslint --ignore-path \\\"./.gitignore\\\" \\\"**/*.{js,ts}\\\"\" \"stylelint --ignore-path \\\"./.gitignore\\\" \\\"**/*.{css,pcss,sass}\\\"\""
+        "lint": "concurrently -c \"#7963E6\",\"#7A8387\" -n eslint,stylelint \"eslint --ignore-path \\\"./.gitignore\\\" \\\"**/*.{js,ts}\\\"\" \"stylelint --ignore-path \\\"./.gitignore\\\" \\\"**/*.{css,pcss,sass}\\\"\"",
+        "prepare": "husky install"
     },
     "devDependencies": {
         "@prettier/plugin-pug": "^2.0.0",
@@ -21,7 +22,9 @@
         "glob": "^8.0.3",
         "html-webpack-plugin": "^5.5.0",
         "husky": "^8.0.1",
+        "lint-staged": "^12.4.3",
         "mini-css-extract-plugin": "^2.6.0",
+        "mrm": "^2.6.2",
         "postcss": "^8.4.14",
         "postcss-loader": "^7.0.0",
         "postcss-nested": "^5.0.6",
@@ -54,5 +57,10 @@
     "dependencies": {
         "jquery": "^3.6.0",
         "sanitize.css": "^13.0.0"
+    },
+    "lint-staged": {
+        "*.{js,ts}": "eslint --cache",
+        "*.{css,pcss,sass}": "stylelint",
+        "*.{js,ts,html,ejs,pug,css,pcss,sass,json}": "prettier --write"
     }
 }

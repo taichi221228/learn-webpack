@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
 
-npx concurrently -c "#BC507A","#7963E6","#7A8387" -n prettier,eslint,stylelint "prettier --ignore-path \"./.gitignore\" --write \"**/*.{js,ts,html,ejs,pug,css,pcss,sass,json}\"" "eslint --ignore-path \"./.gitignore\" \"**/*.{js,ts}\"" "stylelint --ignore-path \"./.gitignore\" \"**/*.{css,pcss,sass}\""
+npx lint-staged
