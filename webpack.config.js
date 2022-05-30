@@ -2,8 +2,10 @@ process.chdir('./src');
 
 const path = require('path');
 const glob = require('glob');
+const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -24,7 +26,15 @@ const config = {
     open: true,
     host: 'localhost',
   },
-  plugins: [new MiniCssExtractPlugin()],
+  plugins: [
+    new MiniCssExtractPlugin(),
+    new ESLintWebpackPlugin({
+      extensions: ['js', 'ts'],
+    }),
+    new StylelintWebpackPlugin({
+      extensions: ['css', 'pcss', 'scss'],
+    }),
+  ],
   module: {
     rules: [
       {
