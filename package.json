@@ -5,17 +5,20 @@
     "scripts": {
         "build": "rm -rf dist/* ; webpack --mode=production --node-env=production",
         "serve": "webpack serve",
-        "format": "concurrently -c \"#BC507A\",\"#7963E6\",\"#7A8387\" -n prettier,eslint,stylelint \"prettier --ignore-path \\\"./.gitignore\\\" --write \\\"**/*.{js,ts,html,ejs,pug,css,pcss,sass,json}\\\"\" \"eslint --chache --ignore-path \\\"./.gitignore\\\" --fix \\\"**/*.{js,ts}\\\"\" \"stylelint --chache --ignore-path \\\"./.gitignore\\\" --fix \\\"**/*.{css,pcss,sass}\\\"\"",
-        "lint": "concurrently -c \"#7963E6\",\"#7A8387\" -n eslint,stylelint \"eslint --chache --ignore-path \\\"./.gitignore\\\" \\\"**/*.{js,ts}\\\"\" \"stylelint --chache --ignore-path \\\"./.gitignore\\\" \\\"**/*.{css,pcss,sass}\\\"\"",
+        "format": "concurrently -c \"#BC507A\",\"#7963E6\",\"#7A8387\" -n prettier,eslint,stylelint \"prettier --ignore-path \\\"./.gitignore\\\" --write \\\"**/*.{js,ts,html,pug,css,pcss,sass,json}\\\"\" \"eslint --cache --ignore-path \\\"./.gitignore\\\" --fix \\\"**/*.{js,ts}\\\"\" \"stylelint --cache --ignore-path \\\"./.gitignore\\\" --fix \\\"**/*.{css,pcss,sass}\\\"\"",
+        "lint": "concurrently -c \"#7963E6\",\"#7A8387\" -n eslint,stylelint \"eslint --cache --ignore-path \\\"./.gitignore\\\" \\\"**/*.{js,ts}\\\"\" \"stylelint --cache --ignore-path \\\"./.gitignore\\\" \\\"**/*.{css,pcss,sass}\\\"\"",
         "prepare": "husky install"
     },
     "dependencies": {
+        "gsap": "^3.10.4",
         "jquery": "^3.6.0",
+        "lodash": "^4.17.21",
         "sanitize.css": "^13.0.0"
     },
     "devDependencies": {
         "@prettier/plugin-pug": "^2.0.0",
         "@types/jquery": "^3.5.14",
+        "@types/lodash": "^4.14.182",
         "@typescript-eslint/eslint-plugin": "^5.26.0",
         "@typescript-eslint/parser": "^5.26.0",
         "concurrently": "^7.2.1",
@@ -58,7 +61,7 @@
         "> 0.2% and not dead"
     ],
     "lint-staged": {
-        "*.{js,ts,html,ejs,pug,css,pcss,sass,json}": "prettier --write --ignore-path \"./.gitignore\"",
+        "*.{js,ts,html,pug,css,pcss,sass,json}": "prettier --write --ignore-path \"./.gitignore\"",
         "*.{js,ts}": "eslint --cache --ignore-path \"./.gitignore\"",
         "*.{css,pcss,sass}": "stylelint --cache --fix --ignore-path \"./.gitignore\""
     }
