@@ -8,12 +8,14 @@ const TerserWebpackPlugin = require('terser-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
+const entryPoint = glob.sync("main.{js,ts}")[0];
+
 const stylesHandler = MiniCssExtractPlugin.loader;
 
 const pageList = glob.sync('./**/*.{html,pug}', { ignore: './components/**' });
 
 const config = {
-  entry: './main.ts',
+  entry: entryPoint,
   output: {
     path: `${__dirname}/dist`,
     assetModuleFilename: 'assets/[path][name][ext]',
