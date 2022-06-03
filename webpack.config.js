@@ -3,8 +3,10 @@ process.chdir('./src');
 const path = require('path');
 const glob = require('glob');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const DotenvPlugin = require('dotenv-webpack');
 const HtmlPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const SentryCliPlugin = require('@sentry/webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { ProvidePlugin } = require('webpack');
@@ -37,15 +39,18 @@ const config = {
   },
   plugins: [
     new MiniCssExtractPlugin(),
-    new ESLintPlugin({
-      extensions: ['js', 'ts'],
-    }),
-    new StylelintPlugin({
-      extensions: ['css', 'pcss', 'scss'],
-    }),
+    new ESLintPlugin({ extensions: ['js', 'ts'] }),
+    new StylelintPlugin({ extensions: ['css', 'pcss', 'scss'] }),
     new ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
+    }),
+    new DotenvPlugin({ path: `${__dirname}/.env` }),
+    new SentryCliPlugin({
+      release: process.env.RELEASE,
+      include: `${__dirname}/dist`,
+      ignore: ['node_modules', 'webpack.config.js'],
+      // configFile: `${__dirname}/.sentryclirc`
     }),
   ],
   module: {
@@ -136,8 +141,10 @@ module.exports = () => {
   pageList.map((page) => addPageHandler(page));
   if (isProduction) {
     config.mode = 'production';
+    config.devtool = 'hidden-source-map';
   } else {
     config.mode = 'development';
+    config.devtool = 'eval';
   }
   return config;
 };

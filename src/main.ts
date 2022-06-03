@@ -6,6 +6,7 @@ import 'sanitize.css/typography';
 import 'sanitize.css/reduce-motion';
 import 'sanitize.css/ui-monospace';
 
-import '@/style';
-
+import '@/scripts/tracking';
 import '@/scripts/hello';
+
+import '@/style';
