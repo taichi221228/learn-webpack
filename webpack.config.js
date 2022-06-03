@@ -144,7 +144,7 @@ module.exports = () => {
     outputFileList.map(async (outputFile) => await remove(outputFile));
 
     config.mode = 'production';
-    config.devtool = 'hidden-source-map';
+    config.devtool = 'source-map';
   } else {
     config.mode = 'development';
     config.devtool = 'eval';
