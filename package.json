@@ -2,6 +2,11 @@
     "version": "1.0.0",
     "description": "My Webpack Project",
     "name": "my-webpack-project",
+    "homepage": "https://github.com/taichi221228/my-webpack-project#readme",
+    "bugs": {
+        "url": "https://github.com/taichi221228/my-webpack-project/issues",
+        "email": "project@hostname.com"
+    },
     "scripts": {
         "build": "webpack --node-env=production",
         "watch": "webpack watch",
