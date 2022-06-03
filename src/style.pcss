@@ -22,27 +22,21 @@ html {
   --text-color: var(--color);
   --background-color: var(--dark-color);
   --shadow-color: var(--color);
-  --height: 100vh;
-  --padding: 90rem;
-  --blank: 400rem;
 
   position: sticky;
   top: 0;
   display: flex;
   width: 100%;
-  min-height: calc(var(--height) + var(--blank));
+  min-height: 100vh;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding-top: var(--padding);
-  padding-bottom: calc(var(--padding) + var(--blank));
-  margin-top: var(--top);
+  padding-top: 90rem;
+  padding-bottom: 90rem;
   background-color: var(--background-color);
   gap: 100rem;
   text-align: center;
   @media (--medium) {
-    --blank: 800rem;
-
     justify-content: center;
     gap: 200rem;
   }
@@ -94,11 +88,6 @@ html {
     & .img-wrapper {
       width: 230rem;
     }
-  }
-
-  &:last-child {
-    min-height: var(--height);
-    padding-bottom: var(--padding);
   }
 }
 

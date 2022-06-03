@@ -48,7 +48,6 @@ const config = {
     }),
     new DotenvPlugin({ path: `${__dirname}/.env` }),
     new SentryCliPlugin({
-      release: process.env.RELEASE,
       include: outputPath,
       ignore: ['node_modules', 'webpack.config.js'],
     }),
