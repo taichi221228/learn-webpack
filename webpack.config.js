@@ -1,7 +1,8 @@
 process.chdir('./src');
 
-const path = require('path');
-const glob = require('glob');
+const { remove } = require('fs-extra');
+const { dirname, join, parse } = require('path');
+const { sync } = require('glob');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const DotenvPlugin = require('dotenv-webpack');
 const HtmlPlugin = require('html-webpack-plugin');
@@ -13,18 +14,18 @@ const { ProvidePlugin } = require('webpack');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-const entryPoint = glob.sync('./**/main.{js,ts}')[0];
+const outputPath = `${__dirname}/dist`;
 
-const stylesHandler = MiniCssExtractPlugin.loader;
+const entryPoint = sync('./**/main.{js,ts}')[0];
 
-const pageList = glob.sync('./**/*.{html,pug}', {
+const pageList = sync('./**/*.{html,pug}', {
   ignore: './{,_}{component,include,layout}{,s}/**',
 });
 
 const config = {
   entry: entryPoint,
   output: {
-    path: `${__dirname}/dist`,
+    path: outputPath,
     assetModuleFilename: 'assets/[path][name][ext]',
   },
   devServer: {
@@ -48,9 +49,8 @@ const config = {
     new DotenvPlugin({ path: `${__dirname}/.env` }),
     new SentryCliPlugin({
       release: process.env.RELEASE,
-      include: `${__dirname}/dist`,
+      include: outputPath,
       ignore: ['node_modules', 'webpack.config.js'],
-      // configFile: `${__dirname}/.sentryclirc`
     }),
   ],
   module: {
@@ -62,7 +62,7 @@ const config = {
       },
       {
         test: /\.(css|pcss)$/i,
-        use: [stylesHandler, 'css-loader', 'postcss-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
       },
       {
         test: /\.sass$/i,
@@ -84,7 +84,7 @@ const config = {
     ],
   },
   resolve: {
-    alias: { '@': `${__dirname}/src` },
+    alias: { '@': '.' },
     extensions: [
       '.ts',
       '.js',
@@ -125,9 +125,9 @@ const config = {
 };
 
 function addPageHandler(filename) {
-  const basename = path.parse(filename).name;
-  const outputDirname = path.dirname(filename.replace('pages/', ''));
-  const outputFilename = path.join(outputDirname, `${basename}.html`);
+  const basename = parse(filename).name;
+  const outputDirname = dirname(filename.replace('pages/', ''));
+  const outputFilename = join(outputDirname, `${basename}.html`);
   const handler = new HtmlPlugin({
     filename: outputFilename,
     template: filename,
@@ -140,6 +140,9 @@ function addPageHandler(filename) {
 module.exports = () => {
   pageList.map((page) => addPageHandler(page));
   if (isProduction) {
+    const outputFileList = sync(`${outputPath}/*`);
+    outputFileList.map(async (outputFile) => await remove(outputFile));
+
     config.mode = 'production';
     config.devtool = 'hidden-source-map';
   } else {
