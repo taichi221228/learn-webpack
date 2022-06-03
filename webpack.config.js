@@ -47,10 +47,6 @@ const config = {
       jQuery: 'jquery',
     }),
     new DotenvPlugin({ path: `${__dirname}/.env` }),
-    new SentryCliPlugin({
-      include: outputPath,
-      ignore: ['node_modules', 'webpack.config.js'],
-    }),
   ],
   module: {
     rules: [
@@ -144,6 +140,12 @@ module.exports = () => {
 
     config.mode = 'production';
     config.devtool = 'source-map';
+    config.plugins.push(
+      new SentryCliPlugin({
+        include: outputPath,
+        ignore: ['node_modules', 'webpack.config.js'],
+      })
+    );
   } else {
     config.mode = 'development';
     config.devtool = 'eval';

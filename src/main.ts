@@ -1,12 +1,9 @@
-import 'sanitize.css';
-import 'sanitize.css/forms';
-import 'sanitize.css/assets';
-import 'sanitize.css/system-ui';
-import 'sanitize.css/typography';
-import 'sanitize.css/reduce-motion';
-import 'sanitize.css/ui-monospace';
+(async () => {
+  const isProduction = process.env.NODE_ENV === 'production';
 
-import '@/scripts/tracking';
-import '@/scripts/hello';
+  if (isProduction) {
+    await import(/* webpackMode: "eager" */ '@/modules/tracking');
+  }
 
-import '@/style';
+  import(/* webpackMode: "eager" */ '@/index');
+})();
