@@ -1,8 +1,8 @@
 process.chdir('./src');
 
 const { remove } = require('fs-extra');
-const { dirname, join, parse } = require('path');
 const { sync } = require('glob');
+const { dirname, join, parse } = require('path');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const DotenvPlugin = require('dotenv-webpack');
 const HtmlPlugin = require('html-webpack-plugin');
@@ -12,7 +12,9 @@ const StylelintPlugin = require('stylelint-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { ProvidePlugin } = require('webpack');
 
-const isProduction = process.env.NODE_ENV === 'production';
+const { NODE_ENV } = process.env;
+
+const isProduction = NODE_ENV === 'production';
 
 const outputPath = `${__dirname}/dist`;
 
