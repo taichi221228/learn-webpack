@@ -8,11 +8,11 @@
         "email": "project@hostname.com"
     },
     "scripts": {
-        "build": "webpack --node-env=production",
+        "build": "webpack --node-env=production && prettier --write \"**/*.html\"",
         "watch": "webpack watch",
         "serve": "webpack serve",
-        "format": "concurrently -c \"#BC507A\",\"#7963E6\",\"#7A8387\" -n prettier,eslint,stylelint \"prettier --ignore-path \\\"./.gitignore\\\" --write \\\"**/*.{js,ts,html,pug,css,pcss,sass,json}\\\"\" \"eslint --cache --ignore-path \\\"./.gitignore\\\" --fix \\\"**/*.{js,ts}\\\"\" \"stylelint --cache --ignore-path \\\"./.gitignore\\\" --fix \\\"**/*.{css,pcss,sass}\\\"\"",
-        "lint": "concurrently -c \"#7963E6\",\"#7A8387\" -n eslint,stylelint \"eslint --cache --ignore-path \\\"./.gitignore\\\" \\\"**/*.{js,ts}\\\"\" \"stylelint --cache --ignore-path \\\"./.gitignore\\\" \\\"**/*.{css,pcss,sass}\\\"\"",
+        "format": "concurrently -c \"#BC507A\",\"#7963E6\",\"#7A8387\" -n prettier,eslint,stylelint \"prettier --ignore-path \\\"./.gitignore\\\" --write \\\"**/*.{js,jsx,ts,html,pug,css,pcss,sass,json}\\\"\" \"eslint --cache --ignore-path \\\"./.gitignore\\\" --fix \\\"**/*.{js,jsx,ts}\\\"\" \"stylelint --cache --ignore-path \\\"./.gitignore\\\" --fix \\\"**/*.{css,pcss,sass}\\\"\"",
+        "lint": "concurrently -c \"#7963E6\",\"#7A8387\" -n eslint,stylelint \"eslint --cache --ignore-path \\\"./.gitignore\\\" \\\"**/*.{js,jsx,ts}\\\"\" \"stylelint --cache --ignore-path \\\"./.gitignore\\\" \\\"**/*.{css,pcss,sass}\\\"\"",
         "prepare": "husky install"
     },
     "dependencies": {
@@ -24,6 +24,8 @@
         "sanitize.css": "^13.0.0"
     },
     "devDependencies": {
+        "@babel/core": "^7.18.2",
+        "@babel/preset-react": "^7.17.12",
         "@prettier/plugin-pug": "^2.0.0",
         "@sentry/cli": "^2.1.0",
         "@sentry/webpack-plugin": "^1.18.9",
@@ -31,11 +33,13 @@
         "@types/lodash": "^4.14.182",
         "@typescript-eslint/eslint-plugin": "^5.26.0",
         "@typescript-eslint/parser": "^5.26.0",
+        "babel-loader": "^8.2.5",
         "concurrently": "^7.2.1",
         "css-loader": "^6.7.1",
         "dotenv-webpack": "^7.1.0",
         "eslint": "^8.16.0",
         "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-react": "^7.30.0",
         "eslint-webpack-plugin": "^3.1.1",
         "fs-extra": "^10.1.0",
         "glob": "^8.0.3",
@@ -50,6 +54,8 @@
         "postcss-sass": "^0.5.0",
         "prettier": "^2.6.2",
         "pug-loader": "^2.4.0",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
         "sass": "^1.52.1",
         "sass-loader": "^13.0.0",
         "style-loader": "^3.3.1",
@@ -73,8 +79,8 @@
         "> 0.2% and not dead"
     ],
     "lint-staged": {
-        "*.{js,ts,html,pug,css,pcss,sass,json}": "prettier --write --ignore-path \"./.gitignore\"",
-        "*.{js,ts}": "eslint --cache --ignore-path \"./.gitignore\"",
+        "*.{js,jsx,ts,html,pug,css,pcss,sass,json}": "prettier --write --ignore-path \"./.gitignore\"",
+        "*.{js,jsx,ts}": "eslint --cache --ignore-path \"./.gitignore\"",
         "*.{css,pcss,sass}": "stylelint --cache --fix --ignore-path \"./.gitignore\""
     }
 }

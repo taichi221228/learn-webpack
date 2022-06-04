@@ -20,7 +20,7 @@ const outputPath = `${__dirname}/dist`;
 
 const entryPoint = sync('./**/main.{js,ts}')[0];
 
-const pageList = sync('./**/*.{html,pug}', {
+const pageList = sync('./**/*.{html,jsx}', {
   ignore: './{,_}{component,include,layout}{,s}/**',
 });
 
@@ -53,6 +53,17 @@ const config = {
   module: {
     rules: [
       {
+        test: /\.(js|jsx)$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/react'],
+            },
+          },
+        ],
+      },
+      {
         test: /\.ts$/i,
         loader: 'ts-loader',
         exclude: ['/node_modules/'],
@@ -81,10 +92,11 @@ const config = {
     ],
   },
   resolve: {
-    alias: { '@': '.' },
+    alias: { '@': `${__dirname}/src` },
     extensions: [
       '.ts',
       '.js',
+      '.jsx',
       '.css',
       '.pcss',
       '.sass',
