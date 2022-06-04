@@ -1,7 +1,0 @@
-[defaults]
-url=https://sentry.io
-org=inno-6w
-project=my-webpack-project
-
-[auth]
-token=63786d9d2a77420dbfeb76eba5d42d531a33c6cba7c94a4dbef4d692ab24ea17
