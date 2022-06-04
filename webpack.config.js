@@ -121,36 +121,61 @@ const config = {
   },
 };
 
-function addPageHandler(filename) {
+function addPageHandler(filename, options) {
   const basename = parse(filename).name;
   const outputDirname = dirname(filename.replace('pages/', ''));
   const outputFilename = join(outputDirname, `${basename}.html`);
   const handler = new HtmlPlugin({
     filename: outputFilename,
     template: filename,
-    minify: false,
+    ...options,
   });
 
   config.plugins.push(handler);
 }
 
 module.exports = () => {
-  pageList.map((page) => addPageHandler(page));
+  const pageOptions = {
+    minify: {
+      collapseInlineTagWhitespace: true,
+      keepClosingSlash: true,
+      noNewlinesBeforeTagClose: true,
+      preserveLineBreaks: true,
+      removeEmptyAttributes: true,
+      removeRedundantAttributes: true,
+      sortAttributes: true,
+      sortClassName: true,
+      trimCustomFragments: true,
+    },
+  };
+
   if (isProduction) {
     const outputFileList = sync(`${outputPath}/*`);
     outputFileList.map(async (outputFile) => await remove(outputFile));
 
+    pageOptions.minify = {
+      ...pageOptions.minify,
+      minifyCSS: true,
+      minifyJS: true,
+      minifyURLs: true,
+      removeComments: true,
+      useShortDoctype: true,
+    };
+
+    const trackingHandler = new SentryCliPlugin({
+      include: outputPath,
+      ignore: ['node_modules', 'webpack.config.js'],
+    });
+
     config.mode = 'production';
     config.devtool = 'source-map';
-    config.plugins.push(
-      new SentryCliPlugin({
-        include: outputPath,
-        ignore: ['node_modules', 'webpack.config.js'],
-      })
-    );
+    config.plugins.push(trackingHandler);
   } else {
     config.mode = 'development';
     config.devtool = 'eval';
   }
+
+  pageList.map((page) => addPageHandler(page, pageOptions));
+
   return config;
 };
