@@ -20,7 +20,7 @@ const outputPath = `${__dirname}/dist`;
 
 const entryPoint = sync('./**/main.{js,ts}')[0];
 
-const pageList = sync('./**/*.{html,jsx}', {
+const pageList = sync('./**/*.{html,pug,jsx}', {
   ignore: './{,_}{component,include,layout}{,s}/**',
 });
 
@@ -36,7 +36,7 @@ const config = {
     },
     host: 'local-ipv4',
     watchFiles: {
-      paths: [`./**/*.{html,pug}`],
+      paths: [`./**/*.{html,pug,jsx}`],
       options: { liveReload: true },
     },
   },
