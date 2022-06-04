@@ -3,7 +3,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 
 import { Card } from "@/components/hello";
 
-const cardNameList = ["Webpack", "Pug", "PostCSS", "TypeScript"];
+const cardNameList = ["Webpack", "Pug", "JSX", "PostCSS", "Sass", "TypeScript"];
 
 const App = () => {
   return (
