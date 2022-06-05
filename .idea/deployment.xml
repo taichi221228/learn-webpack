@@ -6,7 +6,7 @@
       <paths name="stackzero">
         <serverdata>
           <mappings>
-            <mapping deploy="/my-webpack-project" local="$PROJECT_DIR$/dist" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$/dist" web="/" />
           </mappings>
         </serverdata>
       </paths>
