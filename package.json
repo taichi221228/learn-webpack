@@ -5,7 +5,7 @@
     "homepage": "https://github.com/taichi221228/my-webpack-project#readme",
     "bugs": {
         "url": "https://github.com/taichi221228/my-webpack-project/issues",
-        "email": "project@hostname.com"
+        "email": "taichi221228@icloud.com"
     },
     "scripts": {
         "build": "webpack --node-env=production && prettier --write \"**/*.html\"",
