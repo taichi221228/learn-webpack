@@ -1,19 +1,14 @@
 {
+    "name": "learn-webpack",
+    "description": "Learn Webpack",
     "version": "1.0.0",
-    "description": "My Webpack Project",
-    "name": "my-webpack-project",
-    "homepage": "https://github.com/taichi221228/my-webpack-project#readme",
+    "browserslist": [
+        "> 0.2% and last 2 versions",
+        "> 0.2% and not dead"
+    ],
     "bugs": {
         "url": "https://github.com/taichi221228/my-webpack-project/issues",
         "email": "taichi221228@icloud.com"
-    },
-    "scripts": {
-        "build": "webpack --node-env=production && prettier --write \"**/*.html\"",
-        "watch": "webpack watch",
-        "serve": "webpack serve",
-        "format": "concurrently -c \"#BC507A\",\"#7963E6\",\"#7A8387\" -n prettier,eslint,stylelint \"prettier --ignore-path \\\"./.gitignore\\\" --write \\\"**/*.{js,jsx,ts,html,pug,css,pcss,sass,json}\\\"\" \"eslint --cache --ignore-path \\\"./.gitignore\\\" --fix \\\"**/*.{js,jsx,ts}\\\"\" \"stylelint --cache --ignore-path \\\"./.gitignore\\\" --fix \\\"**/*.{css,pcss,sass}\\\"\"",
-        "lint": "concurrently -c \"#7963E6\",\"#7A8387\" -n eslint,stylelint \"eslint --cache --ignore-path \\\"./.gitignore\\\" \\\"**/*.{js,jsx,ts}\\\"\" \"stylelint --cache --ignore-path \\\"./.gitignore\\\" \\\"**/*.{css,pcss,sass}\\\"\"",
-        "prepare": "husky install"
     },
     "dependencies": {
         "@sentry/browser": "^7.0.0",
@@ -74,13 +69,18 @@
         "webpack-cli": "^4.9.2",
         "webpack-dev-server": "^4.9.0"
     },
-    "browserslist": [
-        "> 0.2% and last 2 versions",
-        "> 0.2% and not dead"
-    ],
+    "homepage": "https://github.com/taichi221228/my-webpack-project#readme",
     "lint-staged": {
-        "*.{js,jsx,ts,html,pug,css,pcss,sass,json}": "prettier --write --ignore-path \"./.gitignore\"",
+        "*.{js,jsx,ts,html,pug,css,pcss,sass,scss,json}": "prettier --write --ignore-path \"./.gitignore\"",
         "*.{js,jsx,ts}": "eslint --cache --ignore-path \"./.gitignore\"",
-        "*.{css,pcss,sass}": "stylelint --cache --fix --ignore-path \"./.gitignore\""
+        "*.{css,pcss,sass,scss}": "stylelint --cache --fix --ignore-path \"./.gitignore\""
+    },
+    "scripts": {
+        "build": "webpack --node-env=production && prettier --write \"**/*.html\"",
+        "format": "concurrently -c \"#BC507A\",\"#7963E6\",\"#7A8387\" -n prettier,eslint,stylelint \"prettier --ignore-path \\\"./.gitignore\\\" --write \\\"**/*.{js,jsx,ts,html,pug,css,pcss,sass,scss,json}\\\"\" \"eslint --cache --ignore-path \\\"./.gitignore\\\" --fix \\\"**/*.{js,jsx,ts}\\\"\" \"stylelint --cache --ignore-path \\\"./.gitignore\\\" --fix \\\"**/*.{css,pcss,sass,scss}\\\"\"",
+        "lint": "concurrently -c \"#7963E6\",\"#7A8387\" -n eslint,stylelint \"eslint --cache --ignore-path \\\"./.gitignore\\\" \\\"**/*.{js,jsx,ts}\\\"\" \"stylelint --cache --ignore-path \\\"./.gitignore\\\" \\\"**/*.{css,pcss,sass,scss}\\\"\"",
+        "prepare": "husky install",
+        "serve": "webpack serve",
+        "watch": "webpack watch"
     }
 }

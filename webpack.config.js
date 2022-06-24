@@ -73,7 +73,7 @@ const config = {
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
       },
       {
-        test: /\.sass$/i,
+        test: /\.(sass|scss)$/i,
         use: 'sass-loader',
       },
       {
@@ -100,6 +100,7 @@ const config = {
       '.css',
       '.pcss',
       '.sass',
+      '.scss',
       '.html',
       '.pug',
       '.eot',

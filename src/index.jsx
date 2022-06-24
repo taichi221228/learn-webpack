@@ -1,15 +1,22 @@
-import React from "react";
-import { renderToStaticMarkup } from "react-dom/server";
+import React from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
 
-import { Card } from "@/components/hello";
+import { Slide } from '@/components/slide';
 
-const cardNameList = ["Webpack", "Pug", "JSX", "PostCSS", "Sass", "TypeScript"];
+const slideNameList = [
+  'Webpack',
+  'Pug',
+  'JSX',
+  'PostCSS',
+  'Sass',
+  'TypeScript',
+];
 
 const App = () => {
   return (
     <>
-      {cardNameList.map((cardName) => (
-        <Card key={cardName} name={cardName} />
+      {slideNameList.map((slideName) => (
+        <Slide key={slideName} name={slideName} />
       ))}
     </>
   );
@@ -23,7 +30,7 @@ export default () => `
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>My Webpack Project</title>
-  <link rel="icon" href=${require("@/images/webpack")} type="image/svg+xml">
+  <link rel="icon" href=${require('@/images/webpack')} type="image/svg+xml">
 </head>
 <body>
   ${renderToStaticMarkup(<App />)}
