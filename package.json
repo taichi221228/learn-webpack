@@ -1,13 +1,13 @@
 {
     "name": "learn-webpack",
     "description": "Learn Webpack",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "browserslist": [
         "> 0.2% and last 2 versions",
         "> 0.2% and not dead"
     ],
     "bugs": {
-        "url": "https://github.com/taichi221228/my-webpack-project/issues",
+        "url": "https://github.com/taichi221228/learn-webpack/issues",
         "email": "taichi221228@icloud.com"
     },
     "dependencies": {
