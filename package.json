@@ -1,7 +1,7 @@
 {
     "name": "learn-webpack",
     "description": "Learn Webpack",
-    "version": "0.1.0",
+    "version": "0.0.0",
     "browserslist": [
         "> 0.2% and last 2 versions",
         "> 0.2% and not dead"
@@ -42,6 +42,7 @@
         "husky": "^8.0.1",
         "lint-staged": "^12.4.3",
         "mini-css-extract-plugin": "^2.6.0",
+        "nodemon": "^2.0.19",
         "postcss": "^8.4.14",
         "postcss-loader": "^7.0.0",
         "postcss-nested": "^5.0.6",
@@ -77,10 +78,10 @@
     },
     "scripts": {
         "build": "webpack --node-env=production && prettier --write \"**/*.html\"",
+        "dev": "nodemon --exec \"npx webpack serve\"",
         "format": "concurrently -c \"#BC507A\",\"#7963E6\",\"#7A8387\" -n prettier,eslint,stylelint \"prettier --ignore-path \\\"./.gitignore\\\" --write \\\"**/*.{js,jsx,ts,html,pug,css,pcss,sass,scss,json}\\\"\" \"eslint --cache --ignore-path \\\"./.gitignore\\\" --fix \\\"**/*.{js,jsx,ts}\\\"\" \"stylelint --cache --ignore-path \\\"./.gitignore\\\" --fix \\\"**/*.{css,pcss,sass,scss}\\\"\"",
         "lint": "concurrently -c \"#7963E6\",\"#7A8387\" -n eslint,stylelint \"eslint --cache --ignore-path \\\"./.gitignore\\\" \\\"**/*.{js,jsx,ts}\\\"\" \"stylelint --cache --ignore-path \\\"./.gitignore\\\" \\\"**/*.{css,pcss,sass,scss}\\\"\"",
         "prepare": "husky install",
-        "serve": "webpack serve",
-        "watch": "webpack watch"
+        "serve": "nodemon --exec \"npx webpack serve --node-env=production\""
     }
 }

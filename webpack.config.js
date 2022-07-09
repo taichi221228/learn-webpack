@@ -31,10 +31,7 @@ const config = {
     assetModuleFilename: 'assets/[path][name][ext]',
   },
   devServer: {
-    open: {
-      app: { name: 'google chrome' },
-    },
-    host: 'local-ipv4',
+    host: '0.0.0.0',
     watchFiles: {
       paths: [`./**/*.{html,pug,jsx}`],
       options: { liveReload: true },
